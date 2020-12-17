@@ -3,6 +3,7 @@ Cake plataform é um projeto pessoal que se destina a dar funcionaldiades de div
 
 ## Escopo primeiro release do projeto
 O projeto é uma plataforma para multiplos profissionais, onde teremos:
+- [ ] Layout home com divisão header body e footer 
 
 - [ ] Login facebook
 

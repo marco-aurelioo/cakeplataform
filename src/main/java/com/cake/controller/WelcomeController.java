@@ -1,4 +1,4 @@
-package com.mkyong.controller;
+package com.cake.controller;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -24,6 +24,14 @@ public class WelcomeController {
         model.addAttribute("tasks", tasks);
 
         return "welcome"; //view
+    }
+
+    @GetMapping("/home")
+    public String home(Model model) {
+        model.addAttribute("message", message);
+        model.addAttribute("tasks", tasks);
+
+        return "shop"; //view
     }
 
     // /hello?name=kotlin
