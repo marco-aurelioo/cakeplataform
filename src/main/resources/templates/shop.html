@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <head>
     <meta charset="UTF-8">
@@ -67,7 +67,29 @@
                                 <ul>
                                     <li><a href="#">Sign in</a> <span class="arrow_carrot-down"></span>
                                         <ul>
-                                            <li>Facebook</li>
+
+                                            <nav>
+                                                <p sec:authentication="name">Username</p>
+                                                <a th:href="@{/logout}">Logout</a>
+                                            </nav>
+
+                                            <h1>Bem bindo, <span sec:authentication="name">Username</span></h1>
+                                            <p sec:authentication="authorities">User authorities</p>
+
+                                            <div th:if="${param.logout}">You have been logged out</div>
+                                            <div th:if="${param.error}">There was an error, please try again</div>
+
+                                            <form th:action="@{/login}" method="POST" >
+                                                <input type="text" name="username" />
+                                                <input type="password" name="password" />
+                                                <input type="submit" value="Login" />
+                                            </form>
+
+                                            <form action="/signin/facebook" method="POST">
+                                                <input type="hidden" name="scope" value="public_profile" />
+                                                <input type="submit" value="Login using Facebook"/>
+                                            </form>
+
                                         </ul>
                                     </li>
                                 </ul>
