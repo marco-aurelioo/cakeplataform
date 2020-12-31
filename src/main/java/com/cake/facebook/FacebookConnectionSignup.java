@@ -17,8 +17,15 @@ public class FacebookConnectionSignup implements ConnectionSignUp {
   @Override
   public String execute(Connection<?> connection) {
     UserEntity user = new UserEntity();
+
     user.setUsername(connection.getDisplayName());
     user.setPassword(UUID.randomUUID().toString());
+
+    user.setFullName(connection.getDisplayName());
+    user.setImgUrl(connection.getImageUrl());
+    user.setProviderId(connection.getKey().getProviderId());
+    user.setProviderUserId(connection.getKey().getProviderUserId());
+
     userRepository.save(user);
     return user.getUsername();
   }

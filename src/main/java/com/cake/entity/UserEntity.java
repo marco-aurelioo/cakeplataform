@@ -15,6 +15,12 @@ public class UserEntity {
   private String username;
   private String password;
 
+  private String providerId;
+  private String providerUserId;
+
+  private String fullName;
+  private String imgUrl;
+
   public Long getId() {
     return id;
   }
@@ -37,5 +43,37 @@ public class UserEntity {
 
   public void setPassword(String password) {
     this.password = password;
+  }
+
+  public String getProviderId() {
+    return providerId;
+  }
+
+  public void setProviderId(String providerId) {
+    this.providerId = providerId;
+  }
+
+  public String getProviderUserId() {
+    return providerUserId;
+  }
+
+  public void setProviderUserId(String providerUserId) {
+    this.providerUserId = providerUserId;
+  }
+
+  public String getFullName() {
+    return fullName;
+  }
+
+  public void setFullName(String fullName) {
+    this.fullName = fullName;
+  }
+
+  public String getImgUrl() {
+    return imgUrl;
+  }
+
+  public void setImgUrl(String imgUrl) {
+    this.imgUrl = imgUrl;
   }
 }
