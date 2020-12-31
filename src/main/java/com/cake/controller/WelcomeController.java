@@ -17,28 +17,16 @@ import java.util.List;
 @Controller
 public class WelcomeController {
 
-    // inject via application.properties
-    @Value("${welcome.message}")
-    private String message;
-
     @Autowired
     private UserRepository userRepository;
 
-    private List<String> tasks = Arrays.asList("a", "b", "c", "d", "e", "f", "g");
-
     @GetMapping("/")
     public String main(Model model) {
-        model.addAttribute("message", message);
-        model.addAttribute("tasks", tasks);
-
         return "welcome"; //view
     }
 
     @GetMapping("/home")
     public String home(Model model) {
-        model.addAttribute("message", message);
-        model.addAttribute("tasks", tasks);
-
         Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
         if(loggedInUser.getPrincipal() != null && loggedInUser.getPrincipal().toString().contains(":")) {
             String[] principalValues = loggedInUser.getPrincipal().toString().split(":");
