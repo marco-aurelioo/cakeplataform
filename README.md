@@ -3,9 +3,11 @@ Cake plataform é um projeto pessoal que se destina a dar funcionaldiades de div
 
 ## Escopo primeiro release do projeto
 O projeto é uma plataforma para multiplos profissionais, onde teremos:
-- [ ] Layout home com divisão header body e footer 
+- [x] Layout home com divisão header body e footer 
 
-- [ ] Login facebook
+- [x] Termo de uso e politica de privacidade
+
+- [x] Login facebook
 
 - [ ] Cadastro de confeiteiro(a).
 
@@ -24,10 +26,19 @@ O projeto é uma plataforma para multiplos profissionais, onde teremos:
 # Tecnologias
 - Spring boot mvc 
 - Thymeleaf
+- Spring social
+- Spring security
+
+
+## Sites e ferramentas:
+
+- Gerador de termos de uso e politica de privacidade: https://politicaprivacidade.com/
+
 - Template HTML gratuito obtido em (https://themewagon.com) seguindo:
- 
+
         Limitations for FREE versions
             You are not allowed to remove the copyright credit from the footer.
             You are not allowed to sell, resale, rent, and lease our template.
             W e don’t provide any technical support for free HTML templates
+
 

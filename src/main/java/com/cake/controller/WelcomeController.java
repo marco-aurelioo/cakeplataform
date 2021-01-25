@@ -22,11 +22,17 @@ public class WelcomeController {
 
     @GetMapping("/")
     public String main(Model model) {
+        getLogedUser(model);
+        return "welcome";
+    }
+
+    @GetMapping("/index")
+    public String home(Model model) {
+        getLogedUser(model);
         return "welcome"; //view
     }
 
-    @GetMapping("/home")
-    public String home(Model model) {
+    private void getLogedUser(Model model) {
         Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
         if(loggedInUser.getPrincipal() != null && loggedInUser.getPrincipal().toString().contains(":")) {
             String[] principalValues = loggedInUser.getPrincipal().toString().split(":");
@@ -34,24 +40,7 @@ public class WelcomeController {
                 .findByProviderIdAndProviderUserId(principalValues[0], principalValues[1]);
             model.addAttribute("user",userLoged);
         }
-        return "welcome"; //view
     }
 
-    // /hello?name=kotlin
-    @GetMapping("/hello")
-    public String mainWithParam(
-            @RequestParam(name = "name", required = false, defaultValue = "") String name, Model model) {
-
-        model.addAttribute("message", name);
-
-        return "welcome"; //view
-    }
-
-    @GetMapping("/login")
-    public String loginPage(
-       Model model) {
-
-        return "login"; //view
-    }
 
 }
