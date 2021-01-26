@@ -57,7 +57,7 @@
 <!-- Offcanvas Menu End -->
 
 <!-- Header Section Begin -->
-<div th:insert="header"></div>
+<div th:insert="header" ></div>
 <!-- Header Section End -->
 
 <!-- Breadcrumb Begin -->
@@ -66,7 +66,7 @@
         <div class="row">
             <div class="col-lg-6 col-md-6 col-sm-6">
                 <div class="breadcrumb__text">
-                    <h2>Login</h2>
+                    <h2>Sobre o site.</h2>
                 </div>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6">
@@ -82,49 +82,12 @@
 
 <!-- Shop Section Begin -->
 <div class="container">
-    <div class="row">
-        <div class="d-none d-md-block col-lg-6 col-md-6 mt-2 mb-2" style="background-color:#f08632;">
-            <div class="d-flex h-100 align-items-center justify-content-center">
-                <img class="mx-auto mt-3 " src="/img/access/destaque-ingredientes-960x625.jpg" width="80%">
-            </div>
-        </div>
-        <div class="col-xs-12 col-lg-6 col-md-6">
-            <div class="contact__form">
-                <div style="background-color:#f08632;" class="m-2 p-3">
-                    <form th:action="@{/login}" method="POST">
-                        <div class="col-12">
-                            <input type="text" name="username" placeholder="Usuário"/>
-                        </div>
-                        <div class="col-12">
-                            <input type="password" name="password" placeholder="Senha"/>
-                        </div>
-                        <div class="row">
-                            <button type="submit" class="site-btn m-2">Login</button>
-
-                            <a href="#" class="site-btn m-2">Cadastra-se</a>
-                        </div>
-                    </form>
-                    <form action="/signin/facebook" method="POST">
-                        <input type="hidden" name="scope" value="public_profile"/>
-                        <input class="fa fa-facebook" type="submit" value="Login usando Facebook"/>
-                    </form>
-                    <div th:if="${param.logout}">
-                        <p>Você desconectou, volte sempre faça seu login.</p>
-                    </div>
-                    <div th:if="${param.error}">
-                        <p>Ops, usuario ou senha errados.</p>
-                        <p>Caso você não tenha cadastro entre em <a>cadastre-se</a>.</p>
-                        <p>Caso já seja cadastrado tente novamente com seu usuario e senha ou com Facebook.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <p >Motivadores da criação do site/plataforma</p>
 </div>
 <!-- Shop Section End -->
 
 <!-- Footer Section Begin -->
-<div th:insert="footer"></div>
+<div th:insert="footer" ></div>
 <!-- Footer Section End -->
 
 <!-- Search Begin -->
@@ -149,4 +112,5 @@
 <script type="text/javascript" th:src="@{/js/jquery.nicescroll.min.js}"></script>
 <script type="text/javascript" th:src="@{/js/main.js}"></script>
 </body>
+
 </html>

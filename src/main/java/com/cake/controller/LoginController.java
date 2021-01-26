@@ -5,12 +5,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class LoginController {
+public class LoginController extends  BaseController{
 
     @GetMapping("/login")
     public String loginPage(
             Model model) {
+        getLogedUser(model);
         return "login"; //view
     }
+
+
 
 }
