@@ -66,7 +66,7 @@
         <div class="row">
             <div class="col-lg-6 col-md-6 col-sm-6">
                 <div class="breadcrumb__text">
-                    <h2>Login</h2>
+                    <h2>Cadastro</h2>
                 </div>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6">
@@ -85,35 +85,39 @@
     <div class="row">
         <div class="d-none d-md-block col-lg-6 col-md-6 mt-2 mb-2" style="background-color:#f08632;">
             <div class="d-flex h-100 align-items-center justify-content-center">
-                <img class="mx-auto mt-3 " src="/img/access/destaque-ingredientes-960x625.jpg" width="80%">
+                <img class="mx-auto mt-3 " src="/img/access/making-cake.jpg" width="80%">
             </div>
         </div>
         <div class="col-xs-12 col-lg-6 col-md-6">
             <div class="contact__form">
                 <div style="background-color:#f08632;width: 425px;padding:5px;" class="m-2 p-3">
-                    <form th:action="@{/login}" method="POST">
+                    <form action="#" th:action="@{/cadastro}" method="post" th:object="${newuser}">
                         <div class="col-12">
-                            <input type="text" name="username" placeholder="Usuário"/>
+                            <input type="text" name="name" placeholder="Usuário" th:value="${newuser.name}"/>
                         </div>
                         <div class="col-12">
-                            <input type="password" name="password" placeholder="Senha"/>
+                            <input type="text" name="email" placeholder="email" th:value="${newuser.email}"/>
+                        </div>
+                        <div class="col-12">
+                            <input type="password" name="password" placeholder="Senha"  th:value="${newuser.password}"/>
+                        </div>
+                        <div class="col-12">
+                            <input type="password" name="confirmPassword" placeholder="Confirmar senha" th:value="${newuser.confirmPassword}"/>
                         </div>
                         <div style="width: 425px;padding:5px;">
-                            <button type="submit" class="site-btn m-2">Login</button>
-                            <a th:href="@{/cadastro}" class="site-btn m-2">Cadastra-se</a>
+                            <button type="submit" class="site-btn m-2">Cadastrar</button>
                         </div>
                     </form>
                     <form action="/signin/facebook" method="POST">
                         <input type="hidden" name="scope" value="public_profile"/>
-                        <input class="fa fa-facebook" type="submit" value="Login usando Facebook"/>
+                        <input class="fa fa-facebook" type="submit" value="Cadstro usando Facebook"/>
                     </form>
                     <div th:if="${param.logout}">
                         <p>Você desconectou, volte sempre faça seu login.</p>
                     </div>
                     <div th:if="${param.error}">
-                        <p>Ops, usuario ou senha errados.</p>
-                        <p>Caso você não tenha cadastro entre em <a>cadastre-se</a>.</p>
-                        <p>Caso já seja cadastrado tente novamente com seu usuario e senha ou com Facebook.</p>
+                        <p>Ops, Algo errado no seu cadastro.</p>
+                        <p>Caso já seja cadastrado tente novamente com seu usuario e senha ou com Facebook entrando na tela de <a th:href="@{/login}">Login</a>.</p>
                     </div>
                 </div>
             </div>
