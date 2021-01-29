@@ -12,6 +12,9 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.social.connect.ConnectionFactoryLocator;
 import org.springframework.social.connect.UsersConnectionRepository;
 import org.springframework.social.connect.mem.InMemoryUsersConnectionRepository;
@@ -44,9 +47,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
   protected void configure(final HttpSecurity http) throws Exception {
     // @formatter:off
     http
+        .headers()
+        .frameOptions()
+        .disable()
+        .and()
         .csrf().disable()
         .authorizeRequests()
-        .antMatchers("/login*", "/signin/**", "/signup/**","/home",
+        .antMatchers("/login*", "/signin/**", "/signup/**","/home","/h2-console/**",
                 "/termos-de-uso", "/politica-de-privacidade","sobre-o-site.html","/cadastro",
             "/css/**","/js/**","/img/**","/fonts/**","/sass/**").permitAll()
         .anyRequest().authenticated()
@@ -54,6 +61,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         .formLogin().loginPage("/login").permitAll()
         .and()
         .logout();
+
   } // @formatter:on
 
   @Bean
@@ -78,6 +86,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
       ConnectionFactoryLocator connectionFactoryLocator) {
     return new InMemoryUsersConnectionRepository(connectionFactoryLocator);
   }
+
 
 }
 

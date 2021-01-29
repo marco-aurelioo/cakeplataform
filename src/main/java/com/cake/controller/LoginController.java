@@ -1,6 +1,9 @@
 package com.cake.controller;
 
 import com.cake.dto.NewUser;
+import com.cake.service.CrudUserService;
+import com.cake.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,6 +12,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class LoginController extends  BaseController{
+
+    @Autowired
+    private CrudUserService crudUserService;
 
     @GetMapping("/login")
     public String loginPage(
@@ -30,7 +36,7 @@ public class LoginController extends  BaseController{
             Model model) {
         getLogedUser(model);
         model.addAttribute("newuser",novo);
-
+        crudUserService.criarUsuario(novo);
         return "cadastro"; //view
     }
 }

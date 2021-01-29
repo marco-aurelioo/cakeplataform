@@ -1,9 +1,7 @@
 package com.cake.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class UserEntity {
@@ -18,8 +16,23 @@ public class UserEntity {
   private String providerId;
   private String providerUserId;
 
-  private String fullName;
   private String imgUrl;
+  private String email;
+
+  @ManyToMany(fetch = FetchType.EAGER)
+  private List<PermissaoEntity> grants;
+
+  public void setUsername(String username) {
+    this.username = username;
+  }
+
+  public List<PermissaoEntity> getGrants() {
+    return grants;
+  }
+
+  public void setGrants(List<PermissaoEntity> grants) {
+    this.grants = grants;
+  }
 
   public Long getId() {
     return id;
@@ -31,10 +44,6 @@ public class UserEntity {
 
   public String getUsername() {
     return username;
-  }
-
-  public void setUsername(String username) {
-    this.username = username;
   }
 
   public String getPassword() {
@@ -61,14 +70,6 @@ public class UserEntity {
     this.providerUserId = providerUserId;
   }
 
-  public String getFullName() {
-    return fullName;
-  }
-
-  public void setFullName(String fullName) {
-    this.fullName = fullName;
-  }
-
   public String getImgUrl() {
     return imgUrl;
   }
@@ -76,4 +77,13 @@ public class UserEntity {
   public void setImgUrl(String imgUrl) {
     this.imgUrl = imgUrl;
   }
+
+  public String getEmail() {
+    return email;
+  }
+
+  public void setEmail(String email) {
+    this.email = email;
+  }
+
 }
