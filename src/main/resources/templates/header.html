@@ -7,23 +7,55 @@
                         <div class="header__top__left">
                             <div sec:authorize="isAuthenticated()">
                                 <nav>
-                                    <div >
-                                        <img src="" />
+                                    <div>
+                                        <img src="${user.nameimgProfile} ?: '/img/blog/details/user.jpg'"/>
                                     </div>
-                                    Bem vindo, <span ></span>
+                                    Bem vindo, <span th:text="${user.name}?: 'Visitante'"></span>
                                     <a th:href="@{/logout}">sair</a>
                                 </nav>
                             </div>
                             <div sec:authorize="!isAuthenticated()">
-                                <form th:action="@{/login}" method="POST" >
-                                    <input type="text" name="username" />
-                                    <input type="password" name="password" />
-                                    <input type="submit" value="Login" />
-                                </form>
-                                <form action="/signin/facebook" method="POST">
-                                    <input type="hidden" name="scope" value="public_profile" />
-                                    <input type="submit" value="Login using Facebook"/>
-                                </form>
+                                <button type="button" class="btn btn-primary" data-toggle="modal"
+                                        data-target="#LoginModal">
+                                    Login
+                                </button>
+                                <div class="modal fade" id="LoginModal" tabindex="-1" role="dialog"
+                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div style="background-color:#f08632;width: 425px;padding:5px;"
+                                                     class="m-2 p-3">
+                                                    <form th:action="@{/login}" method="POST">
+                                                        <div class="row">
+                                                            <div class="col-6">
+                                                                <input class="m-1" type="text" name="username"
+                                                                       placeholder="Usuário"/>
+                                                                <input class="m-1" type="password" name="password"
+                                                                       placeholder="Senha"/>
+                                                            </div>
+                                                            <div class="col-6">
+                                                                <button type="submit" class="site-btn m-3 mt-0">Login
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                    <form action="/signin/facebook" method="POST">
+                                                        <input type="hidden" name="scope" value="public_profile"/>
+                                                        <input class="fa fa-facebook" type="submit"
+                                                               value="Login usando Facebook" style="width:350px;"/>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="header__logo">
