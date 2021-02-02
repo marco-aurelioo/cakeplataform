@@ -60,7 +60,17 @@ public class CrudUserService {
     }
 
     public UserProfile getUserProfile(String email){
-        final Optional<UserEntity> optionalUser = userRepository.findByEmail(email);
+        final Optional<UserEntity> entity = userRepository.findByEmail(email);
+        return getUserProfile(entity);
+    }
+
+    public UserProfile findByProviderIdAndProviderUserId(String principalValue, String principalValue1) {
+        final Optional<UserEntity> entity = userRepository
+                .findByProviderIdAndProviderUserId(principalValue, principalValue1);
+        return getUserProfile(entity);
+    }
+
+    private UserProfile getUserProfile(Optional<UserEntity> optionalUser) {
         if (optionalUser.isPresent()) {
             UserEntity entity = optionalUser.get();
             UserProfile user = new UserProfile();
@@ -72,7 +82,7 @@ public class CrudUserService {
             return user;
         }
         else {
-            throw new UsernameNotFoundException(MessageFormat.format("User with email {0} cannot be found.", email));
+            throw new UsernameNotFoundException("User cannot be found.");
         }
     }
 

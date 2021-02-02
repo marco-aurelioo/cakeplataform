@@ -1,6 +1,7 @@
 package com.cake.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -20,7 +21,7 @@ public class UserEntity {
   private String email;
 
   @ManyToMany(fetch = FetchType.EAGER)
-  private List<PermissaoEntity> grants;
+  private List<PermissaoEntity> grants = new ArrayList<>();
 
   public void setUsername(String username) {
     this.username = username;

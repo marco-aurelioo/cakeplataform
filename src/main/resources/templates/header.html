@@ -7,16 +7,23 @@
                         <div class="header__top__left">
                             <div sec:authorize="isAuthenticated()">
                                 <nav>
-                                    <div>
-                                        <img src="${user.nameimgProfile} ?: '/img/blog/details/user.jpg'"/>
+                                    <div class="row">
+                                        <div class="col-2">
+                                            <img th:src="${user.imgProfile} ?: '/img/blog/details/user.png'"/>
+                                        </div>
+                                        <div class="col-8">
+                                            Bem vindo , <span th:text="${user.username}?: 'Visitante'"></span>
+                                        </div>
                                     </div>
-                                    Bem vindo, <span th:text="${user.name}?: 'Visitante'"></span>
-                                    <a th:href="@{/logout}">sair</a>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <a th:href="@{/logout}">sair</a>
+                                        </div>
+                                    </div>
                                 </nav>
                             </div>
                             <div sec:authorize="!isAuthenticated()">
-                                <button type="button" class="btn btn-primary" data-toggle="modal"
-                                        data-target="#LoginModal">
+                                <button type="button" class="btn " data-toggle="modal" data-target="#LoginModal" style="color:#fff;background-color:#f08632;border:0 solid px;">
                                     Login
                                 </button>
                                 <div class="modal fade" id="LoginModal" tabindex="-1" role="dialog"
