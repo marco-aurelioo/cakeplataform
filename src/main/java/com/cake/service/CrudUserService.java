@@ -7,16 +7,11 @@ import com.cake.entity.UserEntity;
 import com.cake.repository.PermissionRepository;
 import com.cake.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.text.MessageFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -74,7 +69,12 @@ public class CrudUserService {
         if (optionalUser.isPresent()) {
             UserEntity entity = optionalUser.get();
             UserProfile user = new UserProfile();
-            List<String> grants = entity.getGrants().stream().map(PermissaoEntity::getPermissao ).collect(Collectors.toList());
+            user.setIdentity(entity.getId().toString());
+            List<String> grantsStr = entity.getGrants().stream().map(PermissaoEntity::getPermissao ).collect(Collectors.toList());
+            List<GrantedAuthority> grants = new ArrayList();
+            for(String s: grantsStr){
+                grants.add(new Permissao(s));
+            }
             user.setAuthorities(grants);
             user.setPassword(entity.getPassword());
             user.setEmail(entity.getEmail());

@@ -13,8 +13,10 @@ public class UserProfile implements UserDetails {
   private String password;
   private String email;
   private String imgProfile;
+  private String identity;
 
-  List<GrantedAuthority> authorities = new ArrayList<>();
+
+  private List<GrantedAuthority> authorities = new ArrayList<>();
 
   public String getName() {
     return name;
@@ -28,13 +30,6 @@ public class UserProfile implements UserDetails {
   public Collection<? extends GrantedAuthority> getAuthorities() {
     return authorities;
   }
-
-  public void setAuthorities(List<String> grants) {
-    for(String grant: grants){
-      authorities.add(new Permissao(grant));
-    }
-  }
-
 
   public String getPassword() {
     return password;
@@ -83,5 +78,17 @@ public class UserProfile implements UserDetails {
 
   public void setImgProfile(String imgProfile) {
     this.imgProfile = imgProfile;
+  }
+
+  public void setAuthorities(List<GrantedAuthority> authorities) {
+    this.authorities = authorities;
+  }
+
+  public String getIdentity() {
+    return identity;
+  }
+
+  public void setIdentity(String identity) {
+    this.identity = identity;
   }
 }

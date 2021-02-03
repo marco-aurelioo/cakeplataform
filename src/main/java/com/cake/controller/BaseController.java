@@ -15,7 +15,7 @@ public class BaseController {
     @Autowired
     private CrudUserService service;
 
-    protected void getLogedUser(Model model) {
+    protected boolean getLogedUser(Model model) {
         Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
         if (loggedInUser.getPrincipal() != null && loggedInUser.getPrincipal().toString().contains(":")) {
             if (loggedInUser.getPrincipal() instanceof UserDetails) {
@@ -26,7 +26,9 @@ public class BaseController {
                         service.findByProviderIdAndProviderUserId(principalValues[0], principalValues[1]);
                 model.addAttribute("user", userLoged);
             }
+            return true;
         }
+        return false;
     }
 
 }
