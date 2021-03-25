@@ -26,7 +26,9 @@ public class LoginController extends  BaseController{
     @GetMapping("/cadastro")
     public String cadastroPage(
             Model model) {
-        getLogedUser(model);
+        if(getLogedUser(model)){
+            return "user/profile";
+        }
         model.addAttribute("newuser",new NewUser());
         return "cadastro"; //view
     }
@@ -34,7 +36,6 @@ public class LoginController extends  BaseController{
     @PostMapping("/cadastro")
     public String cadastrarPage(@ModelAttribute NewUser novo,
             Model model) {
-        getLogedUser(model);
         model.addAttribute("newuser",novo);
         crudUserService.criarUsuario(novo);
         return "cadastro"; //view

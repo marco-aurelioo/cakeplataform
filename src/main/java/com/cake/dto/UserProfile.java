@@ -9,22 +9,15 @@ import java.util.List;
 
 public class UserProfile implements UserDetails {
 
-  private String name;
   private String password;
   private String email;
   private String imgProfile;
   private String identity;
 
+  private String username;
 
   private List<GrantedAuthority> authorities = new ArrayList<>();
 
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
 
   @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -35,9 +28,13 @@ public class UserProfile implements UserDetails {
     return password;
   }
 
+  public void setUsername(String username) {
+    this.username = username;
+  }
+
   @Override
   public String getUsername() {
-    return this.name;
+    return this.username;
   }
 
   @Override

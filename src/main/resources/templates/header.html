@@ -1,111 +1,51 @@
 <header class="header">
-    <div class="header__top">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="header__top__inner">
-                        <div class="header__top__left">
-                            <div sec:authorize="isAuthenticated()">
-                                <nav>
-                                    <div class="row">
-                                        <div class="col-2">
-                                            <img th:src="${user.imgProfile} ?: '/img/blog/details/user.png'"/>
-                                        </div>
-                                        <div class="col-8">
-                                            Bem vindo , <span th:text="${user.username}?: 'Visitante'"></span>
-                                        </div>
+    <div sec:authorize="isAuthenticated()">
+        <nav>
+            <img th:src="${user.imgProfile} ?: '/img/blog/details/user.png'"/>
+            Bem vindo , <span th:text="${user.username}?: 'Visitante'"></span>
+            <a th:href="@{/logout}">sair</a>
+        </nav>
+    </div>
+    <div sec:authorize="!isAuthenticated()">
+        <button type="button" class="btn " data-toggle="modal" data-target="#LoginModal"
+                style="color:#fff;background-color:#f08632;border:0 solid px;">
+            Login
+        </button>
+        <div class="modal fade" id="LoginModal" tabindex="-1" role="dialog"
+             aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"
+                                aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div style="background-color:#f08632;width: 425px;padding:5px;"
+                             class="m-2 p-3">
+                            <form th:action="@{/login}" method="POST">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <input class="m-1" type="text" name="username"
+                                               placeholder="Usuário"/>
+                                        <input class="m-1" type="password" name="password"
+                                               placeholder="Senha"/>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <a th:href="@{/logout}">sair</a>
-                                        </div>
-                                    </div>
-                                </nav>
-                            </div>
-                            <div sec:authorize="!isAuthenticated()">
-                                <button type="button" class="btn " data-toggle="modal" data-target="#LoginModal" style="color:#fff;background-color:#f08632;border:0 solid px;">
-                                    Login
-                                </button>
-                                <div class="modal fade" id="LoginModal" tabindex="-1" role="dialog"
-                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal"
-                                                        aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <div style="background-color:#f08632;width: 425px;padding:5px;"
-                                                     class="m-2 p-3">
-                                                    <form th:action="@{/login}" method="POST">
-                                                        <div class="row">
-                                                            <div class="col-6">
-                                                                <input class="m-1" type="text" name="username"
-                                                                       placeholder="Usuário"/>
-                                                                <input class="m-1" type="password" name="password"
-                                                                       placeholder="Senha"/>
-                                                            </div>
-                                                            <div class="col-6">
-                                                                <button type="submit" class="site-btn m-3 mt-0">Login
-                                                                </button>
-                                                            </div>
-                                                        </div>
-                                                    </form>
-                                                    <form action="/signin/facebook" method="POST">
-                                                        <input type="hidden" name="scope" value="public_profile"/>
-                                                        <input class="fa fa-facebook" type="submit"
-                                                               value="Login usando Facebook" style="width:350px;"/>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
+                                    <div class="col-6">
+                                        <button type="submit" class="site-btn m-3 mt-0">Login
+                                        </button>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="header__logo">
-                            <a href="./index.html"><img src="/img/logo.png" alt=""></a>
-                        </div>
-                        <div class="header__top__right">
-                            <div class="header__top__right__links">
-                                <a href="#" class="search-switch"><img src="/img/icon/search.png" alt=""></a>
-                                <a href="#"><img src="/img/icon/heart.png" alt=""></a>
-                            </div>
-                            <div class="header__top__right__cart">
-                                <a href="#"><img src="/img/icon/cart.png" alt=""> <span>0</span></a>
-                                <div class="cart__price">Cart: <span>$0.00</span></div>
-                            </div>
+                            </form>
+                            <form action="/signin/facebook" method="POST">
+                                <input type="hidden" name="scope" value="public_profile"/>
+                                <input class="fa fa-facebook" type="submit"
+                                       value="Login usando Facebook" style="width:350px;"/>
+                            </form>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="canvas__open"><i class="fa fa-bars"></i></div>
-        </div>
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <nav class="header__menu mobile-menu">
-                    <ul>
-                        <li><a href="./index.html">Home</a></li>
-                        <li><a href="./about.html">About</a></li>
-                        <li class="active"><a href="./shop.html">Shop</a></li>
-                        <li><a href="#">Pages</a>
-                            <ul class="dropdown">
-                                <li><a href="./shop-details.html">Shop Details</a></li>
-                                <li><a href="./shoping-cart.html">Shoping Cart</a></li>
-                                <li><a href="./checkout.html">Check Out</a></li>
-                                <li><a href="./wisslist.html">Wisslist</a></li>
-                                <li><a href="./Class.html">Class</a></li>
-                                <li><a href="./blog-details.html">Blog Details</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="./blog.html">Blog</a></li>
-                        <li><a href="./contact.html">Contact</a></li>
-                    </ul>
-                </nav>
             </div>
         </div>
     </div>

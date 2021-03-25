@@ -11,13 +11,13 @@ public class WelcomeController extends BaseController{
     @GetMapping("/")
     public String main(Model model) {
         getLogedUser(model);
-        return "welcome";
+        return "home";
     }
 
     @GetMapping("/index")
     public String home(Model model) {
         getLogedUser(model);
-        return "welcome"; //view
+        return "home"; //view
     }
 
 

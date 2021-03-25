@@ -78,7 +78,7 @@ public class CrudUserService {
             user.setAuthorities(grants);
             user.setPassword(entity.getPassword());
             user.setEmail(entity.getEmail());
-            user.setName(entity.getUsername());
+            user.setUsername(entity.getUsername());
             return user;
         }
         else {

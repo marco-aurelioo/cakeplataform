@@ -3,6 +3,7 @@ package com.cake.service;
 import com.cake.dto.UserProfile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -30,4 +31,10 @@ public class UserService implements UserDetailsService {
     }
 
 
+    public void updateUser(UserProfile update) {
+        System.out.println("ok"+update.getIdentity());
+        UserProfile principal =( UserProfile ) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        System.out.println("ok"+principal.getIdentity());
+
+    }
 }
