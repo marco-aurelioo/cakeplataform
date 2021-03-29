@@ -4,15 +4,22 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" th:href="@{/css/bootstrap.bundle.min.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" type="text/css">
 </head>
 <body>
 <!-- Header Section Begin -->
 <div th:insert="header" ></div>
 <!-- Header Section End -->
 <h1>Nova</h1>
+<form autocomplete="off" action="#">
+<div class="autocomplete" style="width:300px;">
+    <input id="myInput" type="text" name="myCountry" placeholder="Country">
+</div>
+<input type="submit">
+</form>
 <!-- Footer Section Begin -->
 <div th:insert="footer" ></div>
+<script type="text/javascript" th:src="@{/js/receita.js}"></script>
 <!-- Footer Section End -->
 </body>
 </html>
