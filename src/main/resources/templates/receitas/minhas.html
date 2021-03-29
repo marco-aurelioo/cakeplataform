@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Minhas</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.bundle.min.css}" type="text/css">
+</head>
+<body>
+<!-- Header Section Begin -->
+<div th:insert="header" ></div>
+<!-- Header Section End -->
+<h1>Minhas</h1>
+<span>
+    <a th:href="@{/receitas/nova}">Nova receita</a>
+</span>
+
+<!-- Footer Section Begin -->
+<div th:insert="footer" ></div>
+<!-- Footer Section End -->
+</body>
+</html>

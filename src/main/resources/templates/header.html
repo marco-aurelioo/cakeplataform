@@ -2,12 +2,26 @@
     <div sec:authorize="isAuthenticated()">
         <nav>
             <img th:src="${user.imgProfile} ?: '/img/blog/details/user.png'"/>
-            Bem vindo ,
+                Bem vindo ,
             <span th:text="${user.username}?: 'Visitante'"></span>
             <a th:href="@{/logout}">sair</a>
-            <span>
-                <a th:href="@{/profile}">seus dados</a>
-            </span>
+            <ul>
+                <li>
+                    <span>
+                        <a th:href="@{/profile}">seus dados</a>
+                    </span>
+                </li>
+                <li>
+                    <span>
+                        <a th:href="@{/receitas}">Lista de receitas</a>
+                    </span>
+                </li>
+                <li>
+                    <span>
+                        <a th:href="@{/receitas/minhas}">Suas receitas</a>
+                    </span>
+                </li>
+            </ul>
         </nav>
     </div>
     <div sec:authorize="!isAuthenticated()">

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class ReceitaController extends BaseController {
 
-    @GetMapping("/receitas")
+    @GetMapping("/c")
     public String receia(
             Model model) {
         UserProfile userProfile = getLogedUser(model);
@@ -23,7 +23,7 @@ public class ReceitaController extends BaseController {
         if(userProfile == null){
             return "cadastro";
         }
-        return "receitas/listas";
+        return "receitas/minhas";
     }
 
     @GetMapping("/receitas/nova")
@@ -33,7 +33,7 @@ public class ReceitaController extends BaseController {
         if(userProfile == null){
             return "cadastro";
         }
-        return "receitas/listas";
+        return "receitas/nova";
     }
 
 }
