@@ -29,12 +29,12 @@
 
 <!-- Shop Section Begin -->
 <div class="container">
-    <form action="#" th:action="@{/cadastro}" method="post" th:object="${newuser}">
-        <input type="text" name="name" placeholder="Usuário" th:value="${newuser.username}"/>
-        <input type="text" name="email" placeholder="email" th:value="${newuser.email}"/>
-        <input type="password" name="password" placeholder="Senha" th:value="${newuser.password}"/>
+    <form action="#" th:action="@{/cadastro}" method="post" th:object="${user}">
+        <input type="text" name="username" placeholder="Usuário" th:value="${user.username}"/>
+        <input type="text" name="email" placeholder="email" th:value="${user.email}"/>
+        <input type="password" name="password" placeholder="Senha" th:value="${user.password}"/>
         <input type="password" name="confirmPassword" placeholder="Confirmar senha"
-               th:value="${newuser.confirmPassword}"/>
+               th:value="${user.confirmPassword}"/>
         <button type="submit" class="site-btn m-2">Cadastrar</button>
     </form>
     <form action="/signin/facebook" method="POST">

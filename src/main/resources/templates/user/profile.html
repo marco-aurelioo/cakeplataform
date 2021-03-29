@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-
     <link rel="stylesheet" th:href="@{/css/bootstrap.bundle.min.css}" type="text/css">
 </head>
 <body>
@@ -12,7 +11,19 @@
 <div th:insert="header" ></div>
 <!-- Header Section End -->
 <h1>Profile</h1>
+<form action="#" th:action="@{/cadastro}" method="post" th:object="${user}">
+    <input type="text" name="username" placeholder="Usuário" th:value="${user.username}"/>
+    <input type="text" name="email" placeholder="email" th:value="${user.email}"/>
 
+    <button type="submit" class="site-btn m-2">Cadastrar</button>
+</form>
+<input type="file" id="fileUpload" name="fileUpload" />
+<input type="button" id="btnEnviar" value="Enviar" />
+<span>
+    <div th:if="${erro != null}" >
+   I    <p th:text="${erro} ?: ''"/>
+    </div>
+</span>
 <!-- Footer Section Begin -->
 <div th:insert="footer" ></div>
 <!-- Footer Section End -->

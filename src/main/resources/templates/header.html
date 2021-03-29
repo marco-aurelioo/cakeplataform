@@ -2,8 +2,12 @@
     <div sec:authorize="isAuthenticated()">
         <nav>
             <img th:src="${user.imgProfile} ?: '/img/blog/details/user.png'"/>
-            Bem vindo , <span th:text="${user.username}?: 'Visitante'"></span>
+            Bem vindo ,
+            <span th:text="${user.username}?: 'Visitante'"></span>
             <a th:href="@{/logout}">sair</a>
+            <span>
+                <a th:href="@{/profile}">seus dados</a>
+            </span>
         </nav>
     </div>
     <div sec:authorize="!isAuthenticated()">

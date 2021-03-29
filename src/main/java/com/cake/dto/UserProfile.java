@@ -10,10 +10,10 @@ import java.util.List;
 public class UserProfile implements UserDetails {
 
   private String password;
+  private String confirmPassword;
   private String email;
   private String imgProfile;
   private String identity;
-
   private String username;
 
   private List<GrantedAuthority> authorities = new ArrayList<>();
@@ -87,5 +87,13 @@ public class UserProfile implements UserDetails {
 
   public void setIdentity(String identity) {
     this.identity = identity;
+  }
+
+  public String getConfirmPassword() {
+    return confirmPassword;
+  }
+
+  public void setConfirmPassword(String confirmPassword) {
+    this.confirmPassword = confirmPassword;
   }
 }
